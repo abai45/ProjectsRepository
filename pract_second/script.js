@@ -13,16 +13,61 @@ let personalMovieDB = {
     privat:false,
 };
 
-for (let i = 1; i <= numberOfFilms ; i++) {
-    let a = prompt(`Введите название ${i} фильма`),
-        b;
+/* Задача с циклом for */
+// for (let i = 1; i <= numberOfFilms ; i++) {
+//     let a = prompt(`Введите название ${i} фильма`),
+//         b;
 
-    // a.length > 10 ? alert('Название фильма слишком длинное') : b = prompt('Насколько бы вы оценили этот фильм?');
+//     // a.length > 10 ? alert('Название фильма слишком длинное') : b = prompt('Насколько бы вы оценили этот фильм?');
+    
+//     if (a != null && a != '') {
+//         if (a.length < 10) {
+//         b = prompt('Насколько бы вы оценили этот фильм?');
+//         personalMovieDB.movies[a] = b;
+//         } else {
+//             alert('Название фильма слишком длинное');
+//             i--;
+//         }
+//     } else {
+//         alert('Введите какое либо значение в поле');
+//         i--;
+//     }
+// }
+
+/* Задача с циклом do ... while */
+// let i = 1;
+// do {
+
+//     let a = prompt(`Введите название ${i} фильма`),
+//     b;
+//     i++;
+
+//     if (a != null && a != '') {
+//         if (a.length < 10) {
+//         b = prompt('Насколько бы вы оценили этот фильм?');
+//         personalMovieDB.movies[a] = b;
+//         } else {
+//             alert('Название фильма слишком длинное');
+//             i--;
+//         }
+//     } else {
+//         alert('Введите какое либо значение в поле');
+//         i--;
+//     }
+// } while (i <= numberOfFilms);
+
+/* Задача с циклом while */
+let i = 1;
+while (i <= numberOfFilms) { 
+    let a = prompt(`Введите название ${i} фильма`),
+    b;
+    i++;
     
     if (a != null && a != '') {
         if (a.length < 10) {
         b = prompt('Насколько бы вы оценили этот фильм?');
         personalMovieDB.movies[a] = b;
+
         } else {
             alert('Название фильма слишком длинное');
             i--;
@@ -43,6 +88,9 @@ if (personalMovieDB.count <= 10) {
 } else {
     alert('Произошла ошибка');
 }
+
+
+
 /* В switch такое не сработает, потому что там не могут хранится логические выражения */
 // switch (personalMovieDB.count) {
 //     case personalMovieDB.count < 10: alert('Посмотрено довольно мало фильмов');
