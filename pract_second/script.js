@@ -21,7 +21,7 @@ let personalMovieDB = {
 //     // a.length > 10 ? alert('Название фильма слишком длинное') : b = prompt('Насколько бы вы оценили этот фильм?');
     
 //     if (a != null && a != '') {
-//         if (a.length < 10) {
+//         if (a.length < 30) {
 //         b = prompt('Насколько бы вы оценили этот фильм?');
 //         personalMovieDB.movies[a] = b;
 //         } else {
@@ -70,7 +70,7 @@ while (i <= numberOfFilms) {
 
         } else {
             alert('Название фильма слишком длинное');
-            i--;
+            i--; // <-- Очень полезная штука
         }
     } else {
         alert('Введите какое либо значение в поле');
