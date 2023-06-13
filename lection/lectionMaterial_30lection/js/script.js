@@ -1,24 +1,54 @@
 'use strict';
 
-const box = document.getElementById = 'box';
+const box = document.querySelector('#box'),
+      btns = document.querySelectorAll('button'),
+      circles = document.querySelectorAll('.circle'),
+      wrapper = document.querySelector('.wrapper'),
+      hearts = wrapper.querySelectorAll('.heart'),
+      oneHeart = wrapper.querySelector('.heart');
+console.dir(box);
+box.style.backgroundColor = 'aqua';
+box.style.width = '300px';
 
-console.log(box);
+btns[1].style.borderRadius = '100%';
+circles[0].style.backgroundColor = 'red';
 
-// const btns1 = document.getElementsByTagName('button')[1]; // Получаем по индексу вторую кнопку
-// console.log(btns);
+box.style.cssText = 'background-color:black; width:500px';
 
-const btns = document.getElementsByTagName('button');
-console.log(btns[1]); // То же самое
-
-const circle = document.getElementsByClassName('circle');
-console.log(circle);
-
-const hearts = document.querySelectorAll('.heart'); // Тут мы выбираем по селектору и указываем название класса начиная с . 
-console.log(hearts);
-
-hearts.forEach(item => {
-    console.log(item);
+circles.forEach(element => {
+    element.style.backgroundColor = 'pink';
 });
 
-const oneHeart = document.querySelector('.heart'); // Выбирает первый элемент с классом heart
-console.log(oneHeart);
+for (let i = 0; i < hearts.length; i++) {
+    hearts[i].style.backgroundColor = 'blue';
+}
+
+const div = document.createElement('div');
+const text = document.createTextNode('Тут был яяяяя');
+const span = document.createElement('span');
+span.append(text);
+span.style.color = 'black';
+document.body.append(text);
+
+div.classList.add('black');
+wrapper.append(div);
+
+hearts[0].after(div);
+
+circles[1].remove();
+circles[2].replaceWith(hearts[1]);
+
+// Старый формат
+wrapper.insertBefore(div,hearts[2]);
+//wrapper.replaceChild(hearts[1],circles[0]);
+
+div.innerHTML = '<h1>Hello World</h1>';
+
+div.insertAdjacentHTML('afterbegin', '<h2>1Hello</h2>');
+
+//div.textContent = 'Hello';
+
+
+
+
+
