@@ -18,7 +18,7 @@
 const movieDB = {
     movies: [
         "Логан",
-        "Лига справедливости",
+        "Нурболат чорт ебаный",
         "Ла-ла лэнд",
         "Одержимость",
         "Скотт Пилигрим против...",
@@ -42,6 +42,7 @@ imgArray.forEach((image,index) => {
 });
 
 const imagesAdv = document.querySelectorAll('.imagesAdv');
+
 imagesAdv.forEach(element => {
     element.remove();
 });
