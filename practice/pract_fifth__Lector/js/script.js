@@ -28,7 +28,9 @@ const movieDB = {
 const adv = document.querySelectorAll('.promo__adv img'),
       poster = document.querySelector('.promo__bg'),
       genre = poster.querySelector('.promo__genre'),
-      movieList = document.querySelector('.promo__interactive-list');
+      movieList = document.querySelector('.promo__interactive-list'),
+      submit = document.querySelector('.add button'),
+      input = document.querySelector('.adding__input');
 
 adv.forEach(item => {
     item.remove();
@@ -40,6 +42,16 @@ poster.style.background = 'url(../img/bg.jpg) top / cover no-repeat';
 movieList.innerHTML = "";
 movieDB.movies.sort();
 
+submit.addEventListener('click', (e) => {
+    (e).preventDefault();
+
+    movieList.innerHTML += `
+    <li class="promo__interactive-item">${movieDB.movies.push(input.value)}
+        <div class="delete"></div>
+    </li>
+    `;
+})
+
 movieDB.movies.forEach((film,index) => {
     movieList.innerHTML += `
     <li class="promo__interactive-item">${index+1}. ${film}
@@ -47,5 +59,3 @@ movieDB.movies.forEach((film,index) => {
     </li>
     `;
 });
-
-

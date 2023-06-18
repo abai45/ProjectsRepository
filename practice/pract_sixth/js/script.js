@@ -34,10 +34,12 @@ const parentAdv = document.querySelector('.promo__adv'),
       imgAdvBlock = parentAdv.querySelectorAll('img'),
       bg = document.querySelector('.promo__bg'),
       genre = document.querySelector('.promo__genre'),
-      filmsList = document.querySelectorAll('.promo__interactive-item'),
+      filmsList = document.querySelector('.promo__interactive-list'),
       textInput = document.querySelector('.adding__input'),
-      submit = document.querySelector('.add button');
+      submit = document.querySelector('.add button'),
+      input = document.querySelector('.adding__input');
 
+//First TASK
 const imgArray = [...imgAdvBlock];
 
 imgArray.forEach((image,index) => {
@@ -60,15 +62,37 @@ genre.textContent = 'Драма';
 bg.style.background = 'url(../img/bg.jpg) top / cover no-repeat';
 
 //Fourth & fifth TASK
-console.log(movieDB.movies.sort());
-console.log(filmsList);
-const filmsArray = [...filmsList];
-console.log(filmsArray);
+movieDB.movies.sort();
+filmsList.innerHTML = '';
+// const filmsArray = [...filmsList];
 
-for (let i = 0; i < filmsList.length; i++) {
-    filmsArray[i].textContent = `${i+1}. ${movieDB.movies[i]}`;
-}
- // ... Здесь надо продолжить.
-submit.addEventListener('click',(e) => {
-    e.preventDefault();
+// for (let i = 0; i < filmsList.length; i++) {
+//     filmsArray[i].textContent = `${i+1}. ${movieDB.movies[i]}`;
+// }
+
+movieDB.movies.forEach((movie,index) => {
+    filmsList.innerHTML += `
+        <li class="promo__interactive-item">${index+1}.${movie}
+            <div class="delete"></div>
+        </li>
+    `
 });
+
+ // ... Здесь надо продолжить.
+ submit.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    movieDB.movies.push(input.value);
+    filmsList.innerHTML = '';
+    movieDB.movies.forEach((newfilm,index) => { //Желательно поменять способ отображения...
+    if (input.value > 21) {
+        
+    }
+        filmsList.innerHTML += `
+    <li class="promo__interactive-item">${index+1}. ${newfilm}
+        <div class="delete"></div>
+    </li>
+    `
+    })
+});
+
