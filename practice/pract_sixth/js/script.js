@@ -84,15 +84,20 @@ movieDB.movies.forEach((movie,index) => {
 
     movieDB.movies.push(input.value);
     filmsList.innerHTML = '';
-    movieDB.movies.forEach((newfilm,index) => { //Желательно поменять способ отображения...
-    if (input.value > 21) {
-        
-    }
-        filmsList.innerHTML += `
-    <li class="promo__interactive-item">${index+1}. ${newfilm}
-        <div class="delete"></div>
-    </li>
-    `
+    movieDB.movies.forEach((newfilm,index) => { //Желательно поменять способ отображения...  
+        if (input.value > 21) {        
+            filmsList.innerHTML += `
+                <li class="promo__interactive-item">${index+1}. ${newfilm.substring(0,21)}...
+                    <div class="delete"></div>
+                </li>
+                `
+        } else {
+            filmsList.innerHTML += `
+            <li class="promo__interactive-item">${index+1}. ${newfilm}
+                <div class="delete"></div>
+            </li>
+            `
+        }
     })
 });
 
