@@ -29,6 +29,31 @@ const movieDB = {
         "Адам бол"
     ]
 };
+function displayFilms() {
+    movieDB.movies.forEach((newfilm,index) => {
+        filmsList.innerHTML += `
+        <li class="promo__interactive-item">${index+1}. ${newfilm}
+            <div class="delete"></div>
+        </li>
+        `
+    });
+}
+function tooMuch() {
+    movieDB.movies.forEach((newfilm,index) => {
+        filmsList.innerHTML += `
+        <li class="promo__interactive-item">${index+1}. ${newfilm.slice(0,21)}...
+            <div class="delete"></div>
+        </li>
+        `
+    });
+}
+function isFavoriteFilmSelected() {
+    const checkbox = document.querySelector('[data-id="inputData-3"]');
+    return checkbox.checked;
+};
+function printFavoriteFilmMessafe() {
+    console.log('Добавляем ваш любимый фильм');
+}
 
 const parentAdv = document.querySelector('.promo__adv'),
       imgAdvBlock = parentAdv.querySelectorAll('img'),
@@ -37,16 +62,15 @@ const parentAdv = document.querySelector('.promo__adv'),
       filmsList = document.querySelector('.promo__interactive-list'),
       textInput = document.querySelector('.adding__input'),
       submit = document.querySelector('.add button'),
-      input = document.querySelector('.adding__input');
+      input = document.querySelector('.adding__input'),
+      trashBucket = document.querySelectorAll('.delete');
 
-//First TASK
 const imgArray = [...imgAdvBlock];
 
 imgArray.forEach((image,index) => {
     const uniqueData = 'imageAdv__' + (index+1); // Генерирует уникальный id, чтобы удалить/заменить выборочно элемент
     image.setAttribute('data-index', uniqueData);
     image.classList.add('imagesAdv');
-    console.log(image);
 });
 
 const imagesAdv = document.querySelectorAll('.imagesAdv');
@@ -55,49 +79,42 @@ imagesAdv.forEach(element => {
     element.remove();
 });
 
-// Second TASK
 genre.textContent = 'Драма';
 
-//Third TASK
 bg.style.background = 'url(../img/bg.jpg) top / cover no-repeat';
 
-//Fourth & fifth TASK
 movieDB.movies.sort();
 filmsList.innerHTML = '';
-// const filmsArray = [...filmsList];
 
-// for (let i = 0; i < filmsList.length; i++) {
-//     filmsArray[i].textContent = `${i+1}. ${movieDB.movies[i]}`;
-// }
+displayFilms();
 
-movieDB.movies.forEach((movie,index) => {
-    filmsList.innerHTML += `
-        <li class="promo__interactive-item">${index+1}.${movie}
-            <div class="delete"></div>
-        </li>
-    `
+const inputs = document.querySelectorAll('input');
+const inputsArray = [...inputs];
+
+inputsArray.forEach((input,index) => {
+    const uniqueInputData = `inputData-${index+1}`;
+    input.setAttribute('data-id',uniqueInputData);
 });
 
- // ... Здесь надо продолжить.
+// ... Здесь надо продолжить.
  submit.addEventListener('click', (e) => {
     e.preventDefault();
 
     movieDB.movies.push(input.value);
+    movieDB.movies.sort();
     filmsList.innerHTML = '';
-    movieDB.movies.forEach((newfilm,index) => { //Желательно поменять способ отображения...  
-        if (input.value > 21) {        
-            filmsList.innerHTML += `
-                <li class="promo__interactive-item">${index+1}. ${newfilm.substring(0,21)}...
-                    <div class="delete"></div>
-                </li>
-                `
-        } else {
-            filmsList.innerHTML += `
-            <li class="promo__interactive-item">${index+1}. ${newfilm}
-                <div class="delete"></div>
-            </li>
-            `
-        }
-    })
+    if (input.value.length >= 21) {
+        tooMuch();
+    } else {
+        displayFilms();
+    }
+    if (isFavoriteFilmSelected()) {
+        printFavoriteFilmMessafe();
+    }
+    input.value = '';
 });
+
+// Получилось дерьмо.
+
+
 
